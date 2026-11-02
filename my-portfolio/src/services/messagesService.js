@@ -56,7 +56,10 @@ export async function getMessages() {
 }
 
 // status: "read" | "answered". O banco recusa voltar atrás (trigger em supabase/schema.sql).
+// O `.select("id")` devolve as linhas alteradas: se o RLS barrar o update, o Supabase não dá erro,
+// só altera 0 linhas. Por isso conferimos e tratamos 0 linhas como falha.
 export async function updateMessageStatus(id, status) {
-  const { error } = await getSupabase().from("messages").update({ status }).eq("id", id);
+  const { data, error } = await getSupabase().from("messages").update({ status }).eq("id", id).select("id");
   if (error) throw error;
+  if (data.length === 0) throw new Error("Mensagem não encontrada ou sem permissão para alterar");
 }
