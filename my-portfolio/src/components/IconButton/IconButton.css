@@ -1,0 +1,45 @@
+.fo-iconbtn {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  transition:
+    color var(--duration-fast) var(--ease-in-out),
+    background-color var(--duration-fast) var(--ease-in-out);
+}
+.fo-iconbtn:hover {
+  color: var(--foreground);
+}
+.fo-iconbtn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+.fo-iconbtn-sm {
+  width: 36px;
+  height: 36px;
+}
+.fo-iconbtn-lg {
+  width: 54px;
+  height: 54px;
+}
+.fo-iconbtn-glass {
+  background: var(--glass);
+  border-color: var(--glass-border);
+  box-shadow: var(--shadow-glass);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  color: var(--foreground);
+}
+.fo-iconbtn-solid {
+  background: var(--secondary);
+  color: var(--foreground);
+}
+.fo-iconbtn-ghost:hover {
+  background: var(--muted);
+}
