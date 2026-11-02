@@ -15,6 +15,12 @@ export function findProjectBySlug(projects, slug) {
   return projects.find((project) => toSlug(project.name) === slug.toLowerCase());
 }
 
+// Projetos dos Destaques, na ordem escolhida pelo Dono. Destaque cujo repositório
+// sumiu do GitHub é ignorado sem erro (ver docs/decisoes.md, "Destaques da home").
+export function getFeaturedProjects(projects, featuredIds) {
+  return featuredIds.map((id) => projects.find((project) => project.id === id)).filter(Boolean);
+}
+
 // Fallback da home quando não há Destaques: os N projetos atualizados mais recentemente.
 export function getRecentProjects(projects, count = 3) {
   return [...projects].sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at)).slice(0, count);
