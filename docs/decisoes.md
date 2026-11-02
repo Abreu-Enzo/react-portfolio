@@ -83,7 +83,7 @@ Registro das escolhas relevantes do projeto: opções comparadas, critério e o 
 ## Tema na primeira visita
 - Opções comparadas: sempre escuro; seguir `prefers-color-scheme` do sistema
 - Critério: respeitar a preferência do Visitante antes mesmo de ele escolher
-- Escolha: na primeira visita, segue o sistema (fallback escuro); depois que o Visitante alterna, a escolha fica no `localStorage` e prevalece. Um script inline no `index.html` aplica o tema antes da renderização, sem flash.
+- Escolha: na primeira visita, segue o sistema (fallback escuro); depois que o Visitante alterna, a escolha fica no `localStorage` e prevalece. Um script inline no `index.html` aplica o tema antes da renderização, sem flash; o `ThemeProvider` só lê o `data-theme` que o script já pôs no `<html>`, para a regra existir em um lugar só. O tema é gravado só quando o Visitante clica (gravar o tema do sistema na primeira visita faria o site parar de seguir o sistema). A troca usa revelação circular com a View Transitions API; sem suporte ou com movimento reduzido, troca direto.
 - O que aceitamos perder (trade-off): a primeira impressão nem sempre é o tema escuro da referência visual.
 
 ## Cache do GitHub e limite de requisições

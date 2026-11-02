@@ -1,6 +1,8 @@
 import { Outlet } from "react-router";
 import NavPill from "../components/NavPill/NavPill";
 import SiteFooter from "../components/SiteFooter/SiteFooter";
+import ThemeToggle from "../components/ThemeToggle/ThemeToggle";
+import useTheme from "../hooks/useTheme";
 import "./RootLayout.css";
 
 const NAV_ITEMS = [
@@ -19,10 +21,14 @@ const FOOTER_MENU = [
 const FOOTER_CONTACT = [{ label: "GitHub", href: "https://github.com/Abreu-Enzo", external: true }];
 
 const RootLayout = () => {
+  const { theme, changeTheme } = useTheme();
+
   return (
     <>
       <header className="fo-header">
-        <NavPill items={NAV_ITEMS} />
+        <NavPill items={NAV_ITEMS}>
+          <ThemeToggle theme={theme} onChange={changeTheme} />
+        </NavPill>
       </header>
       <main className="fo-main">
         <Outlet />

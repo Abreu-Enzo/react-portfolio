@@ -9,6 +9,23 @@
       name="description"
       content="Portfólio de Enzo Abreu: projetos em React carregados direto do GitHub."
     />
+    <!--
+      Aplica o tema antes de o React carregar, para a página não piscar no tema errado.
+      Ordem: escolha salva pelo Visitante > preferência do sistema > escuro.
+      A mesma regra é lida depois pelo ThemeProvider (src/contexts/ThemeProvider.jsx).
+    -->
+    <script>
+      (function () {
+        var theme = null;
+        try {
+          theme = localStorage.getItem("theme");
+        } catch (error) {}
+        if (theme !== "light" && theme !== "dark") {
+          theme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

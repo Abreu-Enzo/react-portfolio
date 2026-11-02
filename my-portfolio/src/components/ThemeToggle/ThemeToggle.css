@@ -1,0 +1,23 @@
+.fo-theme {
+  width: var(--header-height);
+  height: var(--header-height);
+}
+.fo-theme .fo-icon {
+  transition: transform var(--duration-base) var(--ease-out);
+}
+.fo-theme:hover .fo-icon {
+  transform: rotate(30deg);
+}
+
+/* A revelação circular é feita em JS (ThemeProvider); aqui só desligamos o fade padrão do navegador. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fo-theme:hover .fo-icon {
+    transform: none;
+  }
+}

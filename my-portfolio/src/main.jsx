@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import "./index.css";
+import ThemeProvider from "./contexts/ThemeProvider.jsx";
 
 import RootLayout from "./pages/RootLayout.jsx";
 import HomePage from "./pages/HomePage.jsx";
@@ -46,6 +47,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    {/* O tema envolve tudo, inclusive a página de erro, que fica fora do RootLayout. */}
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </StrictMode>,
 );
