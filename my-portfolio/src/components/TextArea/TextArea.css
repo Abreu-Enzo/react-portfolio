@@ -1,0 +1,17 @@
+.fo-textarea {
+  height: auto;
+  min-height: 140px;
+  padding: 12px var(--space-4);
+  resize: vertical;
+  line-height: 24px;
+}
+.fo-counter {
+  margin-left: auto;
+  color: var(--muted-foreground);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0;
+}
+.fo-counter-low {
+  color: var(--warning);
+}

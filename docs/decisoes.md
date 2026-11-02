@@ -20,6 +20,12 @@ Registro das escolhas relevantes do projeto: opções comparadas, critério e o 
 - Escolha: EmailJS, chamado do front com a chave pública. O formulário salva a mensagem no Supabase e depois dispara o EmailJS. Se o salvamento der certo e o e-mail falhar, o visitante vê sucesso, porque a mensagem não se perdeu (fica no dashboard).
 - O que aceitamos perder (trade-off): o e-mail não é garantido; chave pública exposta no front (aceitável, limitada por domínio no painel do EmailJS).
 
+## Como o banco reconhece o Dono
+- Opções comparadas: qualquer usuário autenticado; e-mail do Dono escrito nas policies; tabela `owner` com o id do usuário
+- Critério: proteção real mesmo se alguém criar outra conta no Supabase; não expor o e-mail do Dono no repositório público
+- Escolha: tabela `public.owner` (sem leitura pela API) + função `is_owner()` usada nas policies de RLS. Permissões por coluna deixam o Visitante inserir só nome, e-mail e texto, e o Dono alterar só o status; um trigger impede o status de voltar atrás. Tudo em `supabase/schema.sql`.
+- O que aceitamos perder (trade-off): um passo manual na configuração (registrar o id do Dono depois de criar o usuário).
+
 ## O que conta como Projeto
 - Opções comparadas: todos os repositórios; só públicos; públicos sem forks e sem arquivados; lista manual
 - Critério: o requisito proíbe cadastro manual; forks e arquivados não representam trabalho atual
