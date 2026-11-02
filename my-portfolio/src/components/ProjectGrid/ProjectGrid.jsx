@@ -13,6 +13,7 @@ const ProjectGrid = ({
   skeletonCount = 6,
   emptyTitle,
   emptyDescription,
+  featured = false,
 }) => {
   if (status === "error") {
     return <ErrorState variant={error?.kind ?? "api"} resetAt={error?.resetAt} onRetry={onRetry} />;
@@ -35,7 +36,7 @@ const ProjectGrid = ({
       {status === "loading" ? (
         <ProjectCardSkeleton count={skeletonCount} />
       ) : (
-        projects.map((project) => <ProjectCard key={project.id} repo={project} />)
+        projects.map((project) => <ProjectCard key={project.id} repo={project} featured={featured} />)
       )}
     </div>
   );

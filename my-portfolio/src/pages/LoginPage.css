@@ -1,0 +1,6 @@
+.fo-login {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  max-width: 420px;
+}

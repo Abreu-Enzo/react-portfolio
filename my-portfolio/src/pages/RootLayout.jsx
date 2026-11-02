@@ -13,6 +13,7 @@ const FOOTER_MENU = [
   { label: "Início", href: "/" },
   { label: "Projetos", href: "/projetos" },
   { label: "Contato", href: "/contato" },
+  { label: "Dashboard", href: "/dashboard" },
 ];
 
 const FOOTER_CONTACT = [{ label: "GitHub", href: "https://github.com/Abreu-Enzo", external: true }];

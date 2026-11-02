@@ -1,0 +1,20 @@
+.fo-stat {
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--muted);
+}
+.fo-stat-value {
+  display: block;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+.fo-stat-value-brand {
+  color: var(--brand-ink);
+}
+.fo-stat-label {
+  color: var(--muted-foreground);
+  font-size: 14px;
+  line-height: 20px;
+}

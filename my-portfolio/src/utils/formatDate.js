@@ -13,6 +13,11 @@ export function formatUpdatedAt(isoDate, now = new Date()) {
   return `Atualizado em ${shortDate}`;
 }
 
+// Data e hora de uma Mensagem ("02/11/2026, 14:05").
+export function formatDateTime(isoDate) {
+  return new Date(isoDate).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
+}
+
 // Horário em que o limite da API do GitHub é liberado ("14:05").
 export function formatTime(timestamp) {
   return new Date(timestamp).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });

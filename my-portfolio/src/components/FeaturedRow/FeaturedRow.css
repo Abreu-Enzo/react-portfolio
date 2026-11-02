@@ -1,0 +1,9 @@
+.fo-featured-row {
+  padding: var(--space-4) var(--space-2);
+  border-bottom: 1px solid var(--border);
+}
+@media (min-width: 720px) {
+  .fo-featured-row {
+    padding: var(--space-4);
+  }
+}

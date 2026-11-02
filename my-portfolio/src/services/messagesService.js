@@ -30,3 +30,33 @@ export async function sendContactMessage(message) {
     return { emailSent: false };
   }
 }
+
+// ---------- Dashboard (só o Dono: o RLS bloqueia os demais) ----------
+
+// Converte a linha do banco (snake_case) para o formato usado no front.
+function toMessage(row) {
+  return {
+    id: row.id,
+    name: row.name,
+    email: row.email,
+    body: row.body,
+    status: row.status,
+    createdAt: row.created_at,
+  };
+}
+
+// Mensagens da mais nova para a mais antiga.
+export async function getMessages() {
+  const { data, error } = await getSupabase()
+    .from("messages")
+    .select("id, name, email, body, status, created_at")
+    .order("created_at", { ascending: false });
+  if (error) throw error;
+  return data.map(toMessage);
+}
+
+// status: "read" | "answered". O banco recusa voltar atrás (trigger em supabase/schema.sql).
+export async function updateMessageStatus(id, status) {
+  const { error } = await getSupabase().from("messages").update({ status }).eq("id", id);
+  if (error) throw error;
+}

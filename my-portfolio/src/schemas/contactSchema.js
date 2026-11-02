@@ -9,7 +9,7 @@ export const BODY_MAX_LENGTH = 2000;
 export const CONTACT_FIELDS = ["name", "email", "body"];
 
 // Algo@algo.algo, sem espaços. Simples de propósito: quem confirma o e-mail de verdade é a resposta.
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function validateContactField(field, value) {
   const text = value.trim();

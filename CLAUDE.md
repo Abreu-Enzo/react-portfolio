@@ -37,6 +37,7 @@ pages/        páginas e layouts das rotas
 hooks/        hooks personalizados (useAlgo.js)
 services/     acesso a APIs e backend; nada de fetch direto em componentes
 contexts/     contextos (tema, sessão)
+routes/       páginas carregadas sob demanda (React.lazy)
 schemas/      funções de validação
 styles/       estilos globais e tokens em CSS puro
 utils/        funções puras auxiliares

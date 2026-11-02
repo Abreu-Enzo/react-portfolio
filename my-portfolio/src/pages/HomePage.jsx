@@ -4,17 +4,22 @@ import Button from "../components/Button/Button";
 import ProjectGrid from "../components/ProjectGrid/ProjectGrid";
 import RateLimitAlert from "../components/RateLimitAlert/RateLimitAlert";
 import useGithubRepos from "../hooks/useGithubRepos";
-import { getRecentProjects } from "../utils/projects";
+import useFeatured, { MAX_FEATURED } from "../hooks/useFeatured";
+import { getFeaturedProjects, getRecentProjects } from "../utils/projects";
 import "./HomePage.css";
-
-const HIGHLIGHT_COUNT = 3;
 
 const HomePage = () => {
   const { status, projects, error, retry, rateLimitedUntil } = useGithubRepos();
+  const featured = useFeatured();
 
-  // Enquanto os Destaques escolhidos no dashboard não existem, a home mostra
-  // os 3 projetos atualizados mais recentemente (ver docs/decisoes.md, "Destaques da home").
-  const highlights = getRecentProjects(projects, HIGHLIGHT_COUNT);
+  // Destaques escolhidos no dashboard; sem nenhum (ou se o banco falhar), a home mostra
+  // os 3 Projetos atualizados mais recentemente (ver docs/decisoes.md, "Destaques da home").
+  const featuredProjects = getFeaturedProjects(projects, featured.ids);
+  const hasFeatured = featuredProjects.length > 0;
+  const highlights = hasFeatured ? featuredProjects : getRecentProjects(projects, MAX_FEATURED);
+
+  // Espera os Destaques antes de mostrar a grade, para não trocar os cards na frente do Visitante.
+  const gridStatus = status === "success" && featured.status === "loading" ? "loading" : status;
 
   return (
     <>
@@ -46,7 +51,11 @@ const HomePage = () => {
         <SectionHeader
           title="Destaques"
           id="highlights-title"
-          meta="Os projetos em que mexi por último."
+          meta={
+            hasFeatured
+              ? "Os projetos que escolhi para mostrar primeiro."
+              : "Os projetos em que mexi por último."
+          }
           action={
             <Button to="/projetos" variant="ghost" iconRight="arrow-right">
               Ver todos
@@ -55,11 +64,12 @@ const HomePage = () => {
         />
         {rateLimitedUntil && <RateLimitAlert resetAt={rateLimitedUntil} />}
         <ProjectGrid
-          status={status}
+          status={gridStatus}
           projects={highlights}
           error={error}
           onRetry={retry}
-          skeletonCount={HIGHLIGHT_COUNT}
+          skeletonCount={MAX_FEATURED}
+          featured={hasFeatured}
         />
       </FrameSection>
     </>
