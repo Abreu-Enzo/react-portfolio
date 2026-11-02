@@ -1,0 +1,6 @@
+.fo-hero { gap: var(--space-6); padding-top: var(--space-16); padding-bottom: var(--space-16); background: linear-gradient(180deg, var(--hero-sky) 0%, var(--background) 100%); }
+.fo-hero-eyebrow { margin: 0; color: var(--muted-foreground); font-family: var(--font-mono); font-size: 14px; line-height: 20px; letter-spacing: 0; }
+.fo-hero-title { margin: 0; max-width: 16ch; }
+.fo-hero-lead { margin: 0; max-width: 52ch; color: var(--muted-foreground); }
+.fo-hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+@media (min-width: 1024px) { .fo-hero-title { font-size: 64px; } }

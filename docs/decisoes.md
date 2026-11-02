@@ -68,6 +68,12 @@ Registro das escolhas relevantes do projeto: opções comparadas, critério e o 
 - Escolha: Prettier (com Husky + lint-staged) e Vitest + Testing Library
 - O que aceitamos perder (trade-off): sem testes de ponta a ponta no navegador real.
 
+## Item ativo do menu
+- Opções comparadas: `Link` + `useLocation` comparando o caminho à mão; `NavLink` do React Router
+- Critério: marcar a página atual com `aria-current="page"` sem lógica extra; nenhum dos dois está na lista da `react-fundamentos`, que só cita `Link`
+- Escolha: `NavLink` (mesmo pacote `react-router`, sem dependência nova), com `end` no item "Início" para ele não ficar ativo em todas as rotas
+- O que aceitamos perder (trade-off): um componente a mais fora do conteúdo da disciplina, que precisa ser explicado no vídeo.
+
 ## Glossário
 - Opções comparadas: `CONTEXT.md`, `GLOSSARY.md`
 - Critério: seguir a convenção da skill de modelagem de domínio usada no harness

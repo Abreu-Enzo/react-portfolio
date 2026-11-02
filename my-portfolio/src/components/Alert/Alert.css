@@ -1,0 +1,12 @@
+.fo-alert { display: flex; align-items: flex-start; gap: var(--space-3); padding: 14px var(--space-4); border-radius: var(--radius-base); border: 1px solid var(--border); background: var(--card); color: var(--card-foreground); }
+.fo-alert-icon { margin-top: 2px; }
+.fo-alert-success .fo-alert-icon { color: var(--brand-ink); }
+.fo-alert-danger { border-color: var(--destructive); }
+.fo-alert-danger .fo-alert-icon { color: var(--destructive); }
+.fo-alert-warning .fo-alert-icon { color: var(--warning); }
+.fo-alert-info .fo-alert-icon { color: var(--muted-foreground); }
+.fo-alert-body { flex: 1; min-width: 0; }
+.fo-alert-title { margin: 0; font-weight: 500; }
+.fo-alert-text { margin: 2px 0 0; color: var(--muted-foreground); font-size: 14px; line-height: 20px; }
+.fo-alert-enter { animation: fo-vapor-in var(--duration-slow) var(--ease-out) both; }
+@keyframes fo-vapor-in { 0% { opacity: 0; filter: blur(12px); transform: translateY(0.35em) scale(1.08); } 60% { opacity: 0.85; } 100% { opacity: 1; filter: blur(0); transform: none; } }

@@ -1,0 +1,5 @@
+.fo-section-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--space-3) var(--space-6); }
+.fo-section-eyebrow { margin: 0 0 var(--space-2); color: var(--muted-foreground); font-size: 14px; line-height: 20px; }
+.fo-section-title { margin: 0; font-size: 30px; line-height: 1.2; font-weight: 500; letter-spacing: -0.04em; color: var(--foreground); }
+.fo-section-meta { margin: var(--space-2) 0 0; color: var(--muted-foreground); font-size: 14px; line-height: 20px; }
+@media (min-width: 1024px) { .fo-section-title { font-size: 44px; line-height: 1.05; font-weight: 600; } }

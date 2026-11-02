@@ -1,0 +1,10 @@
+.fo-project { min-height: 236px; }
+.fo-project-top { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); }
+.fo-project-name { margin: 0; font-size: 16px; line-height: 24px; font-weight: 500; letter-spacing: -0.04em; overflow-wrap: anywhere; }
+.fo-project-link { color: inherit; text-decoration: none; }
+.fo-project-link::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.fo-project-link:focus-visible { outline: none; }
+.fo-project-link:focus-visible::after { outline: 2px solid var(--ring); outline-offset: 2px; }
+.fo-project-desc { margin: 0; color: var(--muted-foreground); font-size: 15px; line-height: 22px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; min-height: 66px; }
+.fo-project-arrow { color: var(--muted-foreground); transition: transform var(--duration-base) var(--ease-out), color var(--duration-fast) var(--ease-in-out); }
+.fo-card-interactive:hover .fo-project-arrow { transform: translate(3px, -3px); color: var(--foreground); }

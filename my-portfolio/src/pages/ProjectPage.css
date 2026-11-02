@@ -1,0 +1,5 @@
+.fo-detail { display: flex; flex-direction: column; gap: var(--space-4); max-width: var(--container-text); }
+.fo-detail-title { margin: 0; overflow-wrap: anywhere; }
+.fo-detail-desc { margin: 0; max-width: 60ch; color: var(--muted-foreground); }
+.fo-detail .fo-project-meta { margin-top: 0; }
+.fo-detail-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-2); }

@@ -1,0 +1,5 @@
+.fo-skel { display: block; background: linear-gradient(90deg, var(--muted) 0%, var(--muted) 35%, var(--secondary) 50%, var(--muted) 65%, var(--muted) 100%); background-size: 300% 100%; animation: fo-shimmer 1.6s linear infinite; border-radius: var(--radius-xs); }
+.fo-skel-circle { border-radius: var(--radius-full); }
+.fo-skel-text { height: 12px; margin: 6px 0; }
+.fo-card .fo-skel { background-color: var(--muted); }
+@keyframes fo-shimmer { from { background-position: 100% 0; } to { background-position: 0 0; } }
