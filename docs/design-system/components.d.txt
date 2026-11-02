@@ -1,0 +1,63 @@
+// Portfólio CP3 — tipos dos componentes (documentação; window.Folio nos previews, src/components no projeto)
+import type { ReactNode, ButtonHTMLAttributes, InputHTMLAttributes, TextareaHTMLAttributes, MouseEvent } from "react";
+
+export type IconName =
+  | "home" | "briefcase" | "flask" | "user" | "layers" | "folder" | "sun" | "moon" | "arrow-up-right" | "arrow-right" | "arrow-left"
+  | "star" | "clock" | "calendar" | "git-branch" | "code" | "box" | "sparkle" | "check" | "check-check" | "x" | "alert-circle"
+  | "alert-triangle" | "info" | "refresh" | "lock" | "log-out" | "inbox" | "mail" | "send" | "search" | "message" | "compass"
+  | "menu" | "cloud-off" | "gauge";
+
+export interface IconProps { name: IconName; size?: number; strokeWidth?: number; label?: string; className?: string }
+
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: "primary" | "secondary" | "ghost" | "brand" | "danger";
+  size?: "sm" | "md" | "lg";
+  iconLeft?: IconName; iconRight?: IconName;
+  /** Desabilita e mostra Spinner — bloqueia envio duplicado. */
+  loading?: boolean; loadingText?: string;
+  /** Renderiza <a>. */
+  href?: string;
+}
+
+export interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  icon: IconName; label: string; variant?: "glass" | "solid" | "ghost"; size?: "sm" | "md" | "lg"; iconSize?: number;
+}
+
+export interface NavItem { id: string; label: string; icon: IconName; href?: string }
+export interface NavPillProps { items: NavItem[]; activeId?: string; onSelect?: (id: string) => void; showLabels?: boolean; ariaLabel?: string }
+export interface ThemeToggleProps { theme: "dark" | "light"; onChange: (next: "dark" | "light") => void }
+export interface FilterChipsProps { options: { value: string; label: string; count?: number }[]; value: string; onChange: (v: string) => void; label?: string }
+export interface TabsProps { items: { value: string; label: string; icon?: IconName; count?: number }[]; value: string; onChange: (v: string) => void; label?: string }
+export interface SectionHeaderProps { title: string; eyebrow?: ReactNode; meta?: ReactNode; action?: ReactNode; as?: "h1" | "h2" | "h3"; id?: string }
+export interface CardProps { as?: string; interactive?: boolean; className?: string; children?: ReactNode }
+
+/** Subconjunto do objeto de repositório da API do GitHub. */
+export interface Repo { name: string; description: string | null; language: string | null; stargazers_count?: number; updated_at: string; topics?: string[]; html_url?: string }
+export interface ProjectCardProps { repo: Repo; href?: string; featured?: boolean; onOpen?: (e: MouseEvent) => void }
+export interface ProjectCardSkeletonProps { count?: number }
+export interface TagProps { children: string }
+export interface BadgeProps { tone?: "neutral" | "brand" | "success" | "warning" | "danger"; icon?: IconName; children: ReactNode }
+export interface SkeletonProps { width?: number | string; height?: number | string; radius?: string; shape?: "text" | "circle" }
+export interface SpinnerProps { size?: number; label?: string }
+export interface EmptyStateProps { icon?: IconName; title: string; description?: ReactNode; action?: ReactNode; tone?: "danger" | "warning" }
+export interface ErrorStateProps { variant?: "api" | "rate-limit" | "not-found"; onRetry?: () => void; retrying?: boolean; resetAt?: number; backHref?: string; title?: string; description?: string }
+export interface StatusPageProps { code?: string; title?: string; description?: string; actions?: ReactNode }
+export interface AlertProps { tone?: "success" | "danger" | "warning" | "info"; title?: string; children?: ReactNode; onClose?: () => void }
+export interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> { label: string; error?: string; hint?: string; required?: boolean }
+export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> { label: string; error?: string; hint?: string; required?: boolean; showCount?: boolean }
+export interface SwitchProps { label: string; description?: string; checked: boolean; onChange: (checked: boolean) => void; disabled?: boolean }
+
+export interface Message { id: string | number; name: string; email: string; body: string; createdAt: string; answered: boolean }
+export interface MessageRowProps { message: Message; onToggleAnswered: (id: Message["id"], answered: boolean) => void; busy?: boolean }
+export interface FeaturedRowProps { repo: Repo; checked: boolean; onChange: (checked: boolean) => void; disabled?: boolean }
+export interface StatTileProps { value: ReactNode; label: string; highlight?: boolean }
+export interface DashboardShellProps { user: { name?: string; email: string }; title?: string; stats?: ReactNode; tabs?: ReactNode; onLogout: () => void; children?: ReactNode }
+export interface TimelineProps { items: { title: string; org: string; place: string; period: string }[] }
+export interface StackGridProps { items: { name: string; slug: string; hex?: string; src?: string }[]; label?: string }
+export interface RotatingHeadlineProps { words: string[]; prefix?: string; interval?: number; as?: "h1" | "h2" }
+export interface HandNoteProps { children: ReactNode; underline?: boolean }
+export interface RevealProps { children: ReactNode; delay?: number; threshold?: number; as?: string }
+export interface FrameSectionProps { as?: string; ticks?: boolean; children?: ReactNode }
+export interface HeroSceneProps { children?: ReactNode; label?: string; hint?: string | false }
+export interface SiteFooterProps { menu: FooterLink[]; contact: FooterLink[]; signature?: string }
+export interface FooterLink { label: string; href: string; icon?: IconName; external?: boolean }
