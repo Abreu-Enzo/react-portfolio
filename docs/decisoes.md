@@ -26,6 +26,30 @@ Registro das escolhas relevantes do projeto: opções comparadas, critério e o 
 - Escolha: tabela `public.owner` (sem leitura pela API) + função `is_owner()` usada nas policies de RLS. Permissões por coluna deixam o Visitante inserir só nome, e-mail e texto, e o Dono alterar só o status; um trigger impede o status de voltar atrás. Tudo em `supabase/schema.sql`.
 - O que aceitamos perder (trade-off): um passo manual na configuração (registrar o id do Dono depois de criar o usuário).
 
+## Carregamento do login e do dashboard
+- Opções comparadas: importar tudo no pacote inicial; `React.lazy` + `Suspense`; propriedade `lazy` das rotas do React Router
+- Critério: o Visitante não deve baixar o código da área do Dono; solução que apareça nas possibilidades da `criterios-e-instrucoes` (3.8)
+- Escolha: `React.lazy` + `Suspense`. As páginas ficam em `src/routes/lazyPages.js` (o ESLint do Fast Refresh não aceita componentes criados no `main.jsx`, que não exporta nada) e o `Suspense` fica no `AuthLayout`, o layout das rotas do Dono que também fornece a sessão. O build gera `LoginPage-*.js` e `DashboardPage-*.js` separados.
+- O que aceitamos perder (trade-off): um instante de carregamento (spinner) na primeira vez que o Dono abre o login ou o dashboard.
+
+## Sessão do Dono e rota protegida
+- Opções comparadas: `localStorage` com token próprio (como na apostila); sessão do Supabase Auth em um `AuthContext`
+- Critério: a proteção precisa valer no backend, e não só esconder a tela
+- Escolha: `AuthProvider` lê a sessão do Supabase e ouve login/logout (`onAuthStateChange`); o `PrivateRoute` da apostila usa essa sessão e redireciona com `<Navigate to="/login" replace />`. Enquanto a sessão está sendo lida, mostra um spinner em vez de redirecionar (senão o Dono logado seria jogado para o login no F5). O `AuthProvider` envolve só `/login` e `/dashboard`.
+- O que aceitamos perder (trade-off): o `PrivateRoute` sozinho não protege nada; quem garante que só o Dono lê as Mensagens é o RLS.
+
+## Como salvar os Destaques
+- Opções comparadas: apagar e regravar a lista inteira; atualizar linha a linha; função SQL (RPC) que troca a lista numa transação
+- Critério: código curto e explicável; respeitar `position` único (1 a 3) sem conflito ao reordenar
+- Escolha: apagar todos e inserir a lista nova com posições 1..N, a cada Switch ligado ou desligado. O Switch muda na hora (atualização otimista) e volta se o banco recusar; todos ficam desabilitados enquanto salva.
+- O que aceitamos perder (trade-off): as duas operações não são atômicas. Se o insert falhar depois do delete, os Destaques ficam vazios e a home volta a mostrar os 3 Projetos mais recentes até o Dono salvar de novo.
+
+## Atualização das Mensagens no dashboard
+- Opções comparadas: esperar o banco em toda ação; atualização otimista em toda ação
+- Critério: abrir uma Mensagem tem que ser instantâneo; "Respondida" é final e não tem desfazer
+- Escolha: virar Lida é otimista (muda na tela e desfaz com `Alert` se o banco recusar); "Marcar como respondida" espera o banco, com spinner e o botão bloqueado.
+- O que aceitamos perder (trade-off): por um instante a tela pode mostrar Lida antes de o banco confirmar.
+
 ## O que conta como Projeto
 - Opções comparadas: todos os repositórios; só públicos; públicos sem forks e sem arquivados; lista manual
 - Critério: o requisito proíbe cadastro manual; forks e arquivados não representam trabalho atual
