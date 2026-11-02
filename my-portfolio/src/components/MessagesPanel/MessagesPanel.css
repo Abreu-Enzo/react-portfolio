@@ -1,0 +1,11 @@
+/* Também usado pelo FeaturedPanel. */
+.fo-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.fo-panel-loading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
