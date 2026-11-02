@@ -45,10 +45,10 @@ Registro das escolhas relevantes do projeto: opções comparadas, critério e o 
 - O que aceitamos perder (trade-off): as duas operações não são atômicas. Se o insert falhar depois do delete, os Destaques ficam vazios e a home volta a mostrar os 3 Projetos mais recentes até o Dono salvar de novo.
 
 ## Atualização das Mensagens no dashboard
-- Opções comparadas: esperar o banco em toda ação; atualização otimista em toda ação
-- Critério: abrir uma Mensagem tem que ser instantâneo; "Respondida" é final e não tem desfazer
-- Escolha: virar Lida é otimista (muda na tela e desfaz com `Alert` se o banco recusar); "Marcar como respondida" espera o banco, com spinner e o botão bloqueado.
-- O que aceitamos perder (trade-off): por um instante a tela pode mostrar Lida antes de o banco confirmar.
+- Opções comparadas: virar Lida ao expandir; botões separados para expandir e para marcar como Lida. Esperar o banco ou atualização otimista.
+- Critério: Mensagem curta, que cabe numa linha, não tem o que expandir e mesmo assim precisa poder virar Lida; o Dono decide quando muda o status, e os estados não têm desfazer
+- Escolha: botões separados. "Expandir" (só aparece quando o texto não cabe na linha) muda apenas a visualização; "Marcar como lida" (só em Pendente) e "Marcar como respondida" mudam o status. As duas ações de status esperam o banco, com spinner, e os botões da linha ficam bloqueados enquanto salva. O service confere quantas linhas o banco alterou: 0 linhas (barrado pelo RLS) conta como erro, e não como sucesso.
+- O que aceitamos perder (trade-off): um clique a mais para marcar como Lida e um instante de espera em cada mudança de status.
 
 ## O que conta como Projeto
 - Opções comparadas: todos os repositórios; só públicos; públicos sem forks e sem arquivados; lista manual
@@ -65,7 +65,7 @@ Registro das escolhas relevantes do projeto: opções comparadas, critério e o 
 ## Estados da Mensagem
 - Opções comparadas: dois estados (pendente, respondida); três estados (pendente, lida, respondida)
 - Critério: o Dono quer distinguir o que ainda não viu do que já viu mas não respondeu
-- Escolha: três estados: pendente, lida e respondida. Toda Mensagem nasce Pendente; vira Lida quando o Dono a expande no dashboard; vira Respondida pelo botão "Marcar como respondida" (a partir de Pendente ou Lida). Os estados só avançam: Respondida é final e Lida não volta a Pendente. O contador da marca mostra só as Pendentes; os `StatTile`s mostram Pendentes, Lidas e Respondidas.
+- Escolha: três estados: pendente, lida e respondida. Toda Mensagem nasce Pendente; vira Lida pelo botão "Marcar como lida" (expandir o texto não muda o status); vira Respondida pelo botão "Marcar como respondida" (a partir de Pendente ou Lida). Os estados só avançam: Respondida é final e Lida não volta a Pendente. O contador da marca mostra só as Pendentes; os `StatTile`s mostram Pendentes, Lidas e Respondidas.
 - O que aceitamos perder (trade-off): um pouco mais de lógica e de UI no dashboard; um clique errado em "Marcar como respondida" não tem desfazer.
 
 ## Referência do Destaque ao Projeto
