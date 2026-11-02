@@ -1,7 +1,26 @@
 /* NavPill fixa a space-6 do topo, centralizada. */
-.fo-header { position: fixed; top: var(--space-6); left: 0; right: 0; z-index: var(--z-header); display: flex; justify-content: center; pointer-events: none; }
-.fo-header > * { pointer-events: auto; }
+.fo-header {
+  position: fixed;
+  top: var(--space-6);
+  left: 0;
+  right: 0;
+  z-index: var(--z-header);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+.fo-header > * {
+  pointer-events: auto;
+}
 
 /* Reserva o espaço da NavPill para nada ficar embaixo dela. */
-.fo-main { min-height: 70vh; padding: calc(var(--header-height) + var(--space-12)) var(--space-6) var(--space-16); }
-@media (min-width: 768px) { .fo-main { padding-left: var(--space-10); padding-right: var(--space-10); } }
+.fo-main {
+  min-height: 70vh;
+  padding: calc(var(--header-height) + var(--space-12)) var(--space-6) var(--space-16);
+}
+@media (min-width: 768px) {
+  .fo-main {
+    padding-left: var(--space-10);
+    padding-right: var(--space-10);
+  }
+}

@@ -9,7 +9,13 @@ const NavPill = ({ items, ariaLabel = "Navegação principal", children }) => {
     <nav className="fo-nav fo-nav-wide" aria-label={ariaLabel}>
       <div className="fo-nav-pill">
         {items.map((item) => (
-          <NavLink key={item.id} to={item.href} end={item.href === "/"} className="fo-nav-item" aria-label={item.label}>
+          <NavLink
+            key={item.id}
+            to={item.href}
+            end={item.href === "/"}
+            className="fo-nav-item"
+            aria-label={item.label}
+          >
             <Icon name={item.icon} size={18} />
             <span className="fo-nav-label">{item.label}</span>
             <span className="fo-nav-tip" aria-hidden="true">

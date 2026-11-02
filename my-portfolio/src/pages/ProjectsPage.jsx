@@ -19,7 +19,8 @@ const ProjectsPage = () => {
     [projects],
   );
   const visibleProjects = useMemo(
-    () => (language === ALL_LANGUAGES ? projects : projects.filter((project) => project.language === language)),
+    () =>
+      language === ALL_LANGUAGES ? projects : projects.filter((project) => project.language === language),
     [projects, language],
   );
 
@@ -28,10 +29,21 @@ const ProjectsPage = () => {
 
   return (
     <FrameSection aria-labelledby="projects-title">
-      <SectionHeader title="Projetos" as="h1" id="projects-title" eyebrow="Direto do meu GitHub" meta={meta} />
+      <SectionHeader
+        title="Projetos"
+        as="h1"
+        id="projects-title"
+        eyebrow="Direto do meu GitHub"
+        meta={meta}
+      />
       {rateLimitedUntil && <RateLimitAlert resetAt={rateLimitedUntil} />}
       {status === "success" && projects.length > 0 && (
-        <FilterChips options={options} value={language} onChange={setLanguage} label="Filtrar por linguagem" />
+        <FilterChips
+          options={options}
+          value={language}
+          onChange={setLanguage}
+          label="Filtrar por linguagem"
+        />
       )}
       <ProjectGrid
         status={status}

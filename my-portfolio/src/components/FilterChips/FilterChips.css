@@ -1,6 +1,36 @@
-.fo-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
-.fo-chip { height: 40px; padding: 0 18px; border-radius: var(--radius-full); border: 1px solid var(--border-strong); background: transparent; color: var(--foreground); cursor: pointer; font-size: 15px; transition: background-color var(--duration-base) var(--ease-out), color var(--duration-base) var(--ease-out), border-color var(--duration-base) var(--ease-out); }
-.fo-chip:hover { background: var(--muted); }
-.fo-chip[aria-pressed="true"] { background: var(--primary); color: var(--primary-foreground); border-color: var(--primary); }
-.fo-chip:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
-.fo-chip-count { margin-left: 6px; opacity: 0.6; font-size: 12px; }
+.fo-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.fo-chip {
+  height: 40px;
+  padding: 0 18px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  color: var(--foreground);
+  cursor: pointer;
+  font-size: 15px;
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out);
+}
+.fo-chip:hover {
+  background: var(--muted);
+}
+.fo-chip[aria-pressed="true"] {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border-color: var(--primary);
+}
+.fo-chip:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+.fo-chip-count {
+  margin-left: 6px;
+  opacity: 0.6;
+  font-size: 12px;
+}

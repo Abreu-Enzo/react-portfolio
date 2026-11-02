@@ -1,2 +1,15 @@
-.fo-tags { display: flex; flex-wrap: wrap; gap: 4px 10px; margin: 0; padding: 0; list-style: none; }
-.fo-tag { color: var(--muted-foreground); font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: 0; }
+.fo-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.fo-tag {
+  color: var(--muted-foreground);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 0;
+}

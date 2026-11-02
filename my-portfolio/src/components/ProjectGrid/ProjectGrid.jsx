@@ -5,7 +5,15 @@ import ErrorState from "../ErrorState/ErrorState";
 import "./ProjectGrid.css";
 
 // Grade de projetos com os quatro estados de um dado de API: carregando, erro, vazio e conteúdo.
-const ProjectGrid = ({ status, projects, error, onRetry, skeletonCount = 6, emptyTitle, emptyDescription }) => {
+const ProjectGrid = ({
+  status,
+  projects,
+  error,
+  onRetry,
+  skeletonCount = 6,
+  emptyTitle,
+  emptyDescription,
+}) => {
   if (status === "error") {
     return <ErrorState variant={error?.kind ?? "api"} resetAt={error?.resetAt} onRetry={onRetry} />;
   }
@@ -15,7 +23,9 @@ const ProjectGrid = ({ status, projects, error, onRetry, skeletonCount = 6, empt
       <EmptyState
         icon="folder"
         title={emptyTitle ?? "Nenhum repositório público encontrado"}
-        description={emptyDescription ?? "Quando eu publicar um projeto no GitHub, ele aparece aqui automaticamente."}
+        description={
+          emptyDescription ?? "Quando eu publicar um projeto no GitHub, ele aparece aqui automaticamente."
+        }
       />
     );
   }
