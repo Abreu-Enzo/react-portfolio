@@ -95,8 +95,8 @@ Registro das escolhas relevantes do projeto: opções comparadas, critério e o 
 ## Formatação e testes
 - Opções comparadas: Prettier, Biome; Vitest + Testing Library, Playwright
 - Critério: convivência com o ESLint do template e com a configuração do Vite; cobrir validação do formulário e bloqueio do dashboard
-- Escolha: Prettier (com Husky + lint-staged) e Vitest + Testing Library
-- O que aceitamos perder (trade-off): sem testes de ponta a ponta no navegador real.
+- Escolha: Prettier (com Husky + lint-staged) e Vitest + Testing Library, com jsdom simulando o navegador. Os testes trocam o Supabase por dublês: o `ContactPage` usa um `sendContactMessage` falso (`vi.mock`) e o `PrivateRoute` recebe a sessão direto pelo `AuthContext`. Um workflow do GitHub Actions (`.github/workflows/ci.yml`) roda formatação, lint, testes e build em cada PR.
+- O que aceitamos perder (trade-off): sem testes de ponta a ponta no navegador real; o envio de verdade ao Supabase e ao EmailJS e as regras de RLS não são testados automaticamente.
 
 ## Item ativo do menu
 - Opções comparadas: `Link` + `useLocation` comparando o caminho à mão; `NavLink` do React Router
