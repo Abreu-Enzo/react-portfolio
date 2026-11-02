@@ -8,6 +8,7 @@ import RootLayout from "./pages/RootLayout.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import ProjectsPage from "./pages/ProjectsPage.jsx";
 import ProjectPage from "./pages/ProjectPage.jsx";
+import ContactPage from "./pages/ContactPage.jsx";
 import PageNotFound from "./pages/PageNotFound.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: "projetos", element: <ProjectsPage /> },
       { path: "projetos/:slug", element: <ProjectPage /> },
+      { path: "contato", element: <ContactPage /> },
       { path: "*", element: <PageNotFound /> },
     ],
   },

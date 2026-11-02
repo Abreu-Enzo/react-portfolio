@@ -6,11 +6,13 @@ import "./RootLayout.css";
 const NAV_ITEMS = [
   { id: "home", label: "Início", icon: "home", href: "/" },
   { id: "projects", label: "Projetos", icon: "briefcase", href: "/projetos" },
+  { id: "contact", label: "Contato", icon: "mail", href: "/contato" },
 ];
 
 const FOOTER_MENU = [
   { label: "Início", href: "/" },
   { label: "Projetos", href: "/projetos" },
+  { label: "Contato", href: "/contato" },
 ];
 
 const FOOTER_CONTACT = [{ label: "GitHub", href: "https://github.com/Abreu-Enzo", external: true }];
