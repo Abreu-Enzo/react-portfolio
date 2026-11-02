@@ -8,7 +8,7 @@ import "./MessagesPanel.css";
 const SKELETON_ROWS = 3;
 
 // Aba Mensagens do dashboard, com os quatro estados: carregando, erro, vazio e lista.
-const MessagesPanel = ({ status, messages, onRetry, onOpen, onMarkAnswered, busyId, actionError }) => {
+const MessagesPanel = ({ status, messages, onRetry, onMarkRead, onMarkAnswered, saving, actionError }) => {
   if (status === "error") {
     return (
       <ErrorState
@@ -47,9 +47,9 @@ const MessagesPanel = ({ status, messages, onRetry, onOpen, onMarkAnswered, busy
           <MessageRow
             key={message.id}
             message={message}
-            onOpen={onOpen}
+            onMarkRead={onMarkRead}
             onMarkAnswered={onMarkAnswered}
-            busy={busyId === message.id}
+            savingStatus={saving?.id === message.id ? saving.status : null}
           />
         ))}
       </ul>

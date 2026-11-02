@@ -68,9 +68,9 @@ const DashboardPage = () => {
             status={messages.status}
             messages={sortedMessages}
             onRetry={messages.retry}
-            onOpen={messages.markAsRead}
+            onMarkRead={messages.markAsRead}
             onMarkAnswered={messages.markAsAnswered}
-            busyId={messages.busyId}
+            saving={messages.saving}
             actionError={messages.actionError}
           />
         ) : (
