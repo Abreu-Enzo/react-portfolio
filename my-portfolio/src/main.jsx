@@ -1,10 +1,32 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { createBrowserRouter } from "react-router";
+import { RouterProvider } from "react-router/dom";
+import "./index.css";
 
-createRoot(document.getElementById('root')).render(
+import RootLayout from "./pages/RootLayout.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import ProjectsPage from "./pages/ProjectsPage.jsx";
+import ProjectPage from "./pages/ProjectPage.jsx";
+import PageNotFound from "./pages/PageNotFound.jsx";
+import ErrorPage from "./pages/ErrorPage.jsx";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      { index: true, element: <HomePage /> },
+      { path: "projetos", element: <ProjectsPage /> },
+      { path: "projetos/:slug", element: <ProjectPage /> },
+      { path: "*", element: <PageNotFound /> },
+    ],
+  },
+]);
+
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </StrictMode>,
-)
+);
