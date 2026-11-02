@@ -98,6 +98,12 @@ Registro das escolhas relevantes do projeto: opções comparadas, critério e o 
 - Escolha: Prettier (com Husky + lint-staged) e Vitest + Testing Library, com jsdom simulando o navegador. Os testes trocam o Supabase por dublês: o `ContactPage` usa um `sendContactMessage` falso (`vi.mock`) e o `PrivateRoute` recebe a sessão direto pelo `AuthContext`. Um workflow do GitHub Actions (`.github/workflows/ci.yml`) roda formatação, lint, testes e build em cada PR.
 - O que aceitamos perder (trade-off): sem testes de ponta a ponta no navegador real; o envio de verdade ao Supabase e ao EmailJS e as regras de RLS não são testados automaticamente.
 
+## Versionamento e hooks de commit
+- Opções comparadas: Conventional Commits, Gitmoji; GitHub Flow, Git Flow, trunk-based; validar só na revisão do PR ou com hooks locais (Husky)
+- Critério: padrão que dá para conferir automaticamente e explicar em uma frase; um aluno só, com entregas curtas na `main`
+- Escolha: Conventional Commits em português, validado pelo commitlint no hook `commit-msg`; Husky + lint-staged no `pre-commit` (ESLint e Prettier só nos arquivos do commit, para ser rápido); GitHub Flow (`main` sempre publicável, uma branch por funcionalidade, merge por PR). Como o `package.json` fica em `my-portfolio/` e o `.git` na raiz, o script `prepare` roda `cd .. && husky my-portfolio/.husky` e cada hook entra em `my-portfolio/` antes de rodar.
+- O que aceitamos perder (trade-off): hooks locais podem ser pulados com `--no-verify`; por isso o CI repete formatação, lint, testes e build no PR.
+
 ## Item ativo do menu
 - Opções comparadas: `Link` + `useLocation` comparando o caminho à mão; `NavLink` do React Router
 - Critério: marcar a página atual com `aria-current="page"` sem lógica extra; nenhum dos dois está na lista da `react-fundamentos`, que só cita `Link`
