@@ -61,6 +61,7 @@ assets/       imagens processadas pelo Vite
 Dentro de `my-portfolio/`, rode e corrija os erros de:
 
 ```
+npm run format   # formata com Prettier
 npm run lint
 npm test
 npm run build
