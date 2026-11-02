@@ -56,6 +56,8 @@ assets/       imagens processadas pelo Vite
 - Nunca commitar direto na `main`. Uma branch por funcionalidade (`feature/`, `fix/`, `chore/`, `docs/`, `test/` + nome em kebab-case), integrada via pull request.
 - Commits em Conventional Commits, em português: `feat: adiciona formulário de contato`.
 - Commits pequenos, um assunto por commit. Nunca commitar `.env` nem segredos.
+- Hooks do Husky (`my-portfolio/.husky/`): o `pre-commit` roda ESLint + Prettier nos arquivos do commit (lint-staged) e o `commit-msg` valida a mensagem (commitlint). Se um hook falhar, corrija o problema; nunca use `--no-verify`.
+- O CI (`.github/workflows/ci.yml`) roda formatação, lint, testes e build em cada pull request.
 
 ## Antes de dar uma tarefa como pronta
 

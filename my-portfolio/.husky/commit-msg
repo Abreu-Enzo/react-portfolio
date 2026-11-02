@@ -1,0 +1,5 @@
+# Confere se a mensagem segue o Conventional Commits (regras em commitlint.config.js).
+# O cd é para o npx achar o commitlint instalado em my-portfolio/. O $1 (arquivo com a mensagem)
+# pode ficar como está: o commitlint resolve esse caminho a partir da raiz do Git.
+cd my-portfolio
+npx --no -- commitlint --edit "$1"

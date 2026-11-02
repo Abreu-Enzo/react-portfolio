@@ -1,0 +1,4 @@
+# Antes de cada commit: ESLint e Prettier só nos arquivos que estão no commit (config "lint-staged" no package.json).
+# O Git roda este hook na raiz do repositório; o app fica em my-portfolio/.
+cd my-portfolio
+npx --no -- lint-staged
