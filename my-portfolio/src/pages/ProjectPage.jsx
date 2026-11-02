@@ -61,7 +61,9 @@ const ProjectPage = () => {
   if (status === "loading") {
     content = <ProjectDetailSkeleton />;
   } else if (status === "error") {
-    content = <ErrorState variant={error.kind} resetAt={error.resetAt} onRetry={retry} backHref="/projetos" />;
+    content = (
+      <ErrorState variant={error.kind} resetAt={error.resetAt} onRetry={retry} backHref="/projetos" />
+    );
   } else if (!project) {
     content = <ErrorState variant="not-found" backHref="/projetos" />;
   } else {

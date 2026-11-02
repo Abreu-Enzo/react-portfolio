@@ -1,2 +1,13 @@
-.fo-spinner { display: inline-block; flex: none; border-radius: var(--radius-full); border: 2px solid currentColor; border-right-color: transparent; animation: fo-spin 0.8s linear infinite; }
-@keyframes fo-spin { to { transform: rotate(360deg); } }
+.fo-spinner {
+  display: inline-block;
+  flex: none;
+  border-radius: var(--radius-full);
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  animation: fo-spin 0.8s linear infinite;
+}
+@keyframes fo-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

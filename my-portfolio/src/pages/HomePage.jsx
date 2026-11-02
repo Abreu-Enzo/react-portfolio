@@ -31,7 +31,12 @@ const HomePage = () => {
           <Button to="/projetos" iconRight="arrow-right">
             Ver projetos
           </Button>
-          <Button href="https://github.com/Abreu-Enzo" external variant="secondary" iconRight="arrow-up-right">
+          <Button
+            href="https://github.com/Abreu-Enzo"
+            external
+            variant="secondary"
+            iconRight="arrow-up-right"
+          >
             Meu GitHub
           </Button>
         </div>

@@ -1,13 +1,71 @@
-.fo-frame { position: relative; display: flex; flex-direction: column; gap: var(--space-8); max-width: var(--container-content); margin: 0 auto; padding: var(--space-10) var(--space-6); border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
-.fo-frame::before, .fo-frame::after { content: ""; position: absolute; left: -1px; right: -1px; height: 1px; background: var(--border); }
-.fo-frame::before { top: 0; }
-.fo-frame::after { bottom: 0; }
-.fo-frame-tick { position: absolute; width: 9px; height: 9px; color: var(--muted-foreground); }
-.fo-frame-tick::before, .fo-frame-tick::after { content: ""; position: absolute; background: currentColor; }
-.fo-frame-tick::before { left: 4px; top: 0; width: 1px; height: 9px; }
-.fo-frame-tick::after { top: 4px; left: 0; width: 9px; height: 1px; }
-.fo-frame-tl { top: -5px; left: -5px; }
-.fo-frame-tr { top: -5px; right: -5px; }
-.fo-frame-bl { bottom: -5px; left: -5px; }
-.fo-frame-br { bottom: -5px; right: -5px; }
-@media (min-width: 768px) { .fo-frame { padding: var(--space-12) var(--space-10); } }
+.fo-frame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  max-width: var(--container-content);
+  margin: 0 auto;
+  padding: var(--space-10) var(--space-6);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+.fo-frame::before,
+.fo-frame::after {
+  content: "";
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  height: 1px;
+  background: var(--border);
+}
+.fo-frame::before {
+  top: 0;
+}
+.fo-frame::after {
+  bottom: 0;
+}
+.fo-frame-tick {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  color: var(--muted-foreground);
+}
+.fo-frame-tick::before,
+.fo-frame-tick::after {
+  content: "";
+  position: absolute;
+  background: currentColor;
+}
+.fo-frame-tick::before {
+  left: 4px;
+  top: 0;
+  width: 1px;
+  height: 9px;
+}
+.fo-frame-tick::after {
+  top: 4px;
+  left: 0;
+  width: 9px;
+  height: 1px;
+}
+.fo-frame-tl {
+  top: -5px;
+  left: -5px;
+}
+.fo-frame-tr {
+  top: -5px;
+  right: -5px;
+}
+.fo-frame-bl {
+  bottom: -5px;
+  left: -5px;
+}
+.fo-frame-br {
+  bottom: -5px;
+  right: -5px;
+}
+@media (min-width: 768px) {
+  .fo-frame {
+    padding: var(--space-12) var(--space-10);
+  }
+}

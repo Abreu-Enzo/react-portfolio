@@ -23,7 +23,15 @@ const VARIANTS = {
   },
 };
 
-const ErrorState = ({ variant = "api", onRetry, retrying = false, resetAt, backHref, title, description }) => {
+const ErrorState = ({
+  variant = "api",
+  onRetry,
+  retrying = false,
+  resetAt,
+  backHref,
+  title,
+  description,
+}) => {
   const config = VARIANTS[variant];
 
   let text = description ?? config.description;

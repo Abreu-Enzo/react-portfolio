@@ -1,9 +1,17 @@
 @import "./styles/tokens.css";
 
 /* Base global. Os estilos de cada componente ficam no .css da pasta dele. */
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-html, body { background: var(--background); color: var(--foreground); }
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
 
 body {
   margin: 0;
@@ -14,6 +22,16 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-button, input, textarea { font: inherit; letter-spacing: inherit; color: inherit; }
+button,
+input,
+textarea {
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
 
-a:focus-visible, button:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}

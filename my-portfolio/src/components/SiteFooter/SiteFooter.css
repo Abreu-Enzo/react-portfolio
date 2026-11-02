@@ -1,7 +1,48 @@
-.fo-footer { display: grid; gap: var(--space-8); max-width: var(--container-content); margin: 0 auto; padding: var(--space-12) var(--space-6) var(--space-6); border-top: 1px solid var(--border); grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
-.fo-footer h2 { margin: 0 0 var(--space-3); color: var(--muted-foreground); font-size: 14px; line-height: 20px; font-weight: 400; }
-.fo-footer ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--space-2); }
-.fo-footer a { display: inline-flex; align-items: center; gap: 8px; color: var(--foreground); text-decoration: none; transition: color var(--duration-fast) var(--ease-in-out); }
-.fo-footer a:hover { color: var(--brand-ink); }
-.fo-footer a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: var(--radius-xs); }
-.fo-footer-sign { grid-column: 1 / -1; margin: 0; padding-top: var(--space-6); border-top: 1px solid var(--border); color: var(--muted-foreground); font-size: 14px; }
+.fo-footer {
+  display: grid;
+  gap: var(--space-8);
+  max-width: var(--container-content);
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-6) var(--space-6);
+  border-top: 1px solid var(--border);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+.fo-footer h2 {
+  margin: 0 0 var(--space-3);
+  color: var(--muted-foreground);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+.fo-footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.fo-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--foreground);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-in-out);
+}
+.fo-footer a:hover {
+  color: var(--brand-ink);
+}
+.fo-footer a:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+.fo-footer-sign {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: 14px;
+}
