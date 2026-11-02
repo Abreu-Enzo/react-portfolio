@@ -1,0 +1,5 @@
+.fo-private-loading {
+  display: grid;
+  place-items: center;
+  min-height: 40vh;
+}
