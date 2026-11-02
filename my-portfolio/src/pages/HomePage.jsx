@@ -19,12 +19,13 @@ const HomePage = () => {
   return (
     <>
       <FrameSection className="fo-hero" aria-labelledby="hero-title">
-        <p className="fo-hero-eyebrow">Enzo Abreu · Desenvolvedor front-end</p>
+        <p className="fo-hero-eyebrow">Enzo Abreu · Produtos digitais e Engenharia de Software</p>
         <h1 className="text-display fo-hero-title" id="hero-title">
-          Interfaces em React, do código ao deploy.
+          Produto e código, do discovery ao deploy.
         </h1>
         <p className="text-lead fo-hero-lead">
-          Estudo desenvolvimento web na FIAP. Os projetos abaixo são carregados direto do meu GitHub.
+          Analista de Produtos no PicPay, onde estou há 3 anos, e estudante de Engenharia de Software na FIAP.
+          Os projetos abaixo vêm direto do meu GitHub.
         </p>
         <div className="fo-hero-actions">
           <Button to="/projetos" iconRight="arrow-right">
