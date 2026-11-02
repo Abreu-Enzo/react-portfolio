@@ -1,0 +1,64 @@
+.fo-shell {
+  display: grid;
+  gap: var(--space-6);
+  max-width: var(--container-lg);
+  margin: 0 auto;
+}
+.fo-shell-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+.fo-shell-user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+.fo-avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--brand);
+  color: var(--brand-foreground);
+  font-weight: 600;
+  font-size: 15px;
+}
+.fo-shell-hello {
+  margin: 0;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+}
+.fo-shell-sub {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 14px;
+  line-height: 20px;
+  overflow-wrap: anywhere;
+}
+.fo-shell > .fo-tabs {
+  justify-self: start;
+}
+.fo-shell-panel {
+  padding: var(--space-4);
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+.fo-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-3);
+}
+@media (min-width: 720px) {
+  .fo-shell-panel {
+    padding: var(--space-6);
+    border-radius: var(--radius-3xl);
+  }
+}
