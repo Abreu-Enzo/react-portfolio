@@ -5,7 +5,7 @@ import { getMessages, updateMessageStatus } from "../services/messagesService";
 export default function useMessages() {
   const [state, setState] = useState({ status: "loading", messages: [], error: null });
   const [attempt, setAttempt] = useState(0);
-  const [busyId, setBusyId] = useState(null); // Mensagem cujo "Marcar como respondida" está salvando
+  const [saving, setSaving] = useState(null); // { id, status } da Mensagem que está salvando, ou null
   const [actionError, setActionError] = useState("");
 
   useEffect(() => {
@@ -38,31 +38,28 @@ export default function useMessages() {
     }));
   }
 
-  // Abrir uma Mensagem Pendente faz ela virar Lida. Atualização otimista: muda na tela na hora
-  // e desfaz se o banco recusar.
-  function markAsRead(message) {
-    if (message.status !== "pending") return;
-
-    setMessageStatus(message.id, "read");
-    updateMessageStatus(message.id, "read").catch(() => {
-      setMessageStatus(message.id, "pending");
-      setActionError("Não foi possível marcar a Mensagem como Lida. Tente abrir de novo.");
-    });
-  }
-
-  // Respondida é final, então aqui esperamos o banco confirmar (spinner no botão) antes de mudar a tela.
-  async function markAsAnswered(message) {
-    setBusyId(message.id);
+  // Avança o status esperando o banco confirmar (spinner no botão) antes de mudar a tela.
+  // Os estados só avançam e não há desfazer, então não vale mostrar uma mudança que pode falhar.
+  async function advanceStatus(message, status, label) {
+    setSaving({ id: message.id, status });
     setActionError("");
     try {
-      await updateMessageStatus(message.id, "answered");
-      setMessageStatus(message.id, "answered");
+      await updateMessageStatus(message.id, status);
+      setMessageStatus(message.id, status);
     } catch {
-      setActionError("Não foi possível marcar a Mensagem como Respondida. Tente de novo.");
+      setActionError(`Não foi possível marcar a Mensagem como ${label}. Tente de novo.`);
     } finally {
-      setBusyId(null);
+      setSaving(null);
     }
   }
 
-  return { ...state, retry, busyId, actionError, markAsRead, markAsAnswered };
+  function markAsRead(message) {
+    return advanceStatus(message, "read", "Lida");
+  }
+
+  function markAsAnswered(message) {
+    return advanceStatus(message, "answered", "Respondida");
+  }
+
+  return { ...state, retry, saving, actionError, markAsRead, markAsAnswered };
 }

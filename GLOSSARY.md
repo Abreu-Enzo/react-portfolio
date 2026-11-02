@@ -33,11 +33,11 @@ O contato que um Visitante envia pelo formulário, com nome, e-mail e texto.
 _Evite_: contato, lead, e-mail
 
 **Pendente**:
-Estado inicial da Mensagem: o Dono ainda não a abriu.
+Estado inicial da Mensagem: o Dono ainda não a marcou como lida.
 _Evite_: nova, não lida
 
 **Lida**:
-Estado da Mensagem que o Dono já abriu, mas ainda não respondeu.
+Estado da Mensagem que o Dono marcou como lida, mas ainda não respondeu.
 _Evite_: vista, aberta
 
 **Respondida**:

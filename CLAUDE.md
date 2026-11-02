@@ -81,7 +81,7 @@ npm run build
 - Projeto = repo público, não-fork e não-arquivado de `Abreu-Enzo`; slug = nome do repo em minúsculas.
 - Destaques: até 3, na ordem do Dono; sem Destaques, a home mostra os 3 Projetos atualizados mais recentemente.
 - Destaque guarda o id do repo no GitHub (sobrevive a renomeação).
-- Mensagem: Pendente → Lida (ao expandir no dashboard) → Respondida (botão). Só avança; contador da marca = Pendentes.
+- Mensagem: Pendente → Lida (botão "Marcar como lida"; expandir não muda o status) → Respondida (botão). Só avança; contador da marca = Pendentes.
 - Idioma: código em inglês; tudo que o Visitante vê em português.
 - Tema: primeira visita segue o sistema (fallback escuro); depois vale a escolha salva no `localStorage`.
 - GitHub: cache em memória + `sessionStorage` (10 min); no rate limit, usa o cache com aviso ou mostra o erro de limite.

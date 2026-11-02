@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Badge from "../Badge/Badge";
 import Button from "../Button/Button";
 import { formatDateTime } from "../../utils/formatDate";
@@ -11,17 +11,30 @@ const STATUS_BADGES = {
   answered: { tone: "success", icon: "check-check", label: "Respondida" },
 };
 
-// Uma Mensagem no dashboard. Fechada mostra só o começo do texto; abrir chama `onOpen`
-// (é o que faz a Mensagem Pendente virar Lida). Use dentro de <ul className="fo-list">.
-const MessageRow = ({ message, onOpen, onMarkAnswered, busy = false }) => {
+// Uma Mensagem no dashboard. Fechada mostra só a primeira linha do texto.
+// Expandir só muda a visualização; o status muda apenas pelos botões de status.
+// `savingStatus`: status que está sendo salvo nesta linha ("read" | "answered"), ou null.
+// Use dentro de <ul className="fo-list">.
+const MessageRow = ({ message, onMarkRead, onMarkAnswered, savingStatus = null }) => {
   const [expanded, setExpanded] = useState(false);
+  const [overflowing, setOverflowing] = useState(false);
+  const bodyRef = useRef(null);
   const badge = STATUS_BADGES[message.status];
   const bodyId = `message-${message.id}-body`;
+  const saving = savingStatus !== null;
 
-  function handleToggle() {
-    if (!expanded) onOpen(message);
-    setExpanded(!expanded);
-  }
+  // O botão "Expandir" só aparece se o texto não cabe na linha. O ResizeObserver mede de novo
+  // quando a largura muda (ex.: girar o celular). Medido só fechado: aberto, tudo já está visível.
+  useEffect(() => {
+    const body = bodyRef.current;
+    if (expanded || !body) return;
+
+    const observer = new ResizeObserver(() => {
+      setOverflowing(body.scrollHeight > body.clientHeight);
+    });
+    observer.observe(body);
+    return () => observer.disconnect();
+  }, [expanded, message.body]);
 
   return (
     <li className={`fo-row ${message.status === "answered" ? "fo-row-answered" : ""}`}>
@@ -38,27 +51,43 @@ const MessageRow = ({ message, onOpen, onMarkAnswered, busy = false }) => {
         {formatDateTime(message.createdAt)}
       </time>
 
-      <p className={`fo-row-body ${expanded ? "" : "fo-row-body-clamp"}`} id={bodyId}>
+      <p ref={bodyRef} className={`fo-row-body ${expanded ? "" : "fo-row-body-clamp"}`} id={bodyId}>
         {message.body}
       </p>
 
       <div className="fo-row-actions">
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={handleToggle}
-          aria-expanded={expanded}
-          aria-controls={bodyId}
-        >
-          {expanded ? "Recolher" : "Ler mensagem"}
-        </Button>
+        {(overflowing || expanded) && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setExpanded(!expanded)}
+            aria-expanded={expanded}
+            aria-controls={bodyId}
+          >
+            {expanded ? "Recolher" : "Expandir"}
+          </Button>
+        )}
+        {message.status === "pending" && (
+          <Button
+            variant="secondary"
+            size="sm"
+            iconLeft="check"
+            loading={savingStatus === "read"}
+            loadingText="Salvando..."
+            disabled={saving}
+            onClick={() => onMarkRead(message)}
+          >
+            Marcar como lida
+          </Button>
+        )}
         {message.status !== "answered" && (
           <Button
             variant="secondary"
             size="sm"
             iconLeft="check-check"
-            loading={busy}
+            loading={savingStatus === "answered"}
             loadingText="Salvando..."
+            disabled={saving}
             onClick={() => onMarkAnswered(message)}
           >
             Marcar como respondida
