@@ -104,6 +104,15 @@ Registro das escolhas relevantes do projeto: opções comparadas, critério e o 
 - Escolha: Conventional Commits em português, validado pelo commitlint no hook `commit-msg`; Husky + lint-staged no `pre-commit` (ESLint e Prettier só nos arquivos do commit, para ser rápido); GitHub Flow (`main` sempre publicável, uma branch por funcionalidade, merge por PR). Como o `package.json` fica em `my-portfolio/` e o `.git` na raiz, o script `prepare` roda `cd .. && husky my-portfolio/.husky` e cada hook entra em `my-portfolio/` antes de rodar.
 - O que aceitamos perder (trade-off): hooks locais podem ser pulados com `--no-verify`; por isso o CI repete formatação, lint, testes e build no PR.
 
+## Recursos usados além da react-fundamentos
+- Opções comparadas: ficar só com o que as apostilas mostram; usar o recurso equivalente do React, do React Router ou do navegador quando o da apostila não resolve
+- Critério: a regra do projeto pede a opção da disciplina primeiro; fora dela, só quando ela não atende e com o motivo registrado
+- Escolha:
+  - `setState((atual) => ...)` (forma com função do próprio `useState`) em `useMessages` e `useFeatured`: o estado muda depois de um `await`, quando o valor capturado no render pode estar velho. A forma da apostila, `setX({ ...x })`, apagaria uma mudança feita nesse meio-tempo.
+  - `createMemoryRouter` nos testes do `PrivateRoute`: é o mesmo roteador do `createBrowserRouter`, mas com a URL em memória, porque no teste não existe barra de endereço.
+  - Trocados por recursos da disciplina: o `ResizeObserver` do `MessageRow` virou ouvinte de `resize` da janela em `useEffect` com limpeza; a animação do círculo do tema saiu do `element.animate()` (JavaScript) e foi para `@keyframes` no CSS, com a origem passada por variáveis CSS.
+- O que aceitamos perder (trade-off): dois recursos a explicar no vídeo; com o ouvinte de `resize`, o botão "Expandir" não se atualiza se a largura da lista mudar sem a janela mudar (não acontece no layout atual).
+
 ## Item ativo do menu
 - Opções comparadas: `Link` + `useLocation` comparando o caminho à mão; `NavLink` do React Router
 - Critério: marcar a página atual com `aria-current="page"` sem lógica extra; nenhum dos dois está na lista da `react-fundamentos`, que só cita `Link`

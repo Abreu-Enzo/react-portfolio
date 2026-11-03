@@ -8,5 +8,8 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     setupFiles: "./src/test/setup.js",
+    // Os testes do formulário digitam letra por letra (como uma pessoa) e levam ~2s cada;
+    // o limite padrão de 5s estourava às vezes em máquina ocupada ou no CI.
+    testTimeout: 15000,
   },
 });

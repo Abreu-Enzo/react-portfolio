@@ -9,11 +9,26 @@
   transform: rotate(30deg);
 }
 
-/* A revelação circular é feita em JS (ThemeProvider); aqui só desligamos o fade padrão do navegador. */
-::view-transition-old(root),
-::view-transition-new(root) {
+/*
+ * Revelação circular da troca de tema (View Transitions API).
+ * A "foto" antiga fica parada e a nova aparece num círculo que cresce a partir do botão.
+ * --reveal-x, --reveal-y e --reveal-radius são definidos pelo ThemeProvider no <html> antes da troca.
+ */
+::view-transition-old(root) {
   animation: none;
   mix-blend-mode: normal;
+}
+::view-transition-new(root) {
+  mix-blend-mode: normal;
+  animation: fo-theme-reveal var(--duration-slow) var(--ease-in-out);
+}
+@keyframes fo-theme-reveal {
+  from {
+    clip-path: circle(0 at var(--reveal-x) var(--reveal-y));
+  }
+  to {
+    clip-path: circle(var(--reveal-radius) at var(--reveal-x) var(--reveal-y));
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
