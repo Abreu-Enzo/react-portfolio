@@ -13,7 +13,7 @@
     ],
     "deny": [
       "Read(./my-portfolio/.env)",
-      "Read(./my-portfolio/.env.*)",
+      "Edit(./my-portfolio/.env)",
       "Bash(git push --force:*)",
       "Bash(git push -f:*)",
       "Bash(git commit --no-verify:*)",
