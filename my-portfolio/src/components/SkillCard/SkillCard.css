@@ -1,0 +1,54 @@
+/* O fundo vem dos tokens --tint-*; texto e ilustração usam --foreground (contraste nos dois temas). */
+.fo-skill-card {
+  height: 100%;
+  border-color: transparent;
+  color: var(--foreground);
+}
+.fo-tint-sky {
+  background: var(--tint-sky);
+}
+.fo-tint-lime {
+  background: var(--tint-lime);
+}
+.fo-tint-sand {
+  background: var(--tint-sand);
+}
+.fo-tint-rose {
+  background: var(--tint-rose);
+}
+.fo-tint-violet {
+  background: var(--tint-violet);
+}
+
+/* A ilustração é traço preto: vira máscara e pinta com a cor do texto do tema. */
+.fo-skill-art,
+.fo-skill-art-icon {
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  margin-bottom: var(--space-2);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+.fo-skill-art {
+  background-color: currentColor;
+  -webkit-mask: var(--art) center / contain no-repeat;
+  mask: var(--art) center / contain no-repeat;
+}
+.fo-skill-card:hover .fo-skill-art,
+.fo-skill-card:hover .fo-skill-art-icon {
+  transform: translateY(-2px) rotate(-3deg);
+}
+
+.fo-skill-name {
+  margin: 0;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 500;
+}
+.fo-skill-desc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 22px;
+  opacity: 0.8;
+}

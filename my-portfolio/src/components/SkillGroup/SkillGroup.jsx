@@ -1,18 +1,17 @@
-import Badge from "../Badge/Badge";
+import SkillCard from "../SkillCard/SkillCard";
 import "./SkillGroup.css";
 
-// Um grupo de skills com título. Com `items`, mostra pílulas (Badge do design system);
+// Um grupo de skills com título. Com `skills`, mostra uma grade de SkillCard;
 // com `children`, mostra o que vier dentro (ex.: o StackGrid das tecnologias).
-// `wide` ocupa a linha inteira da grade de skills no desktop.
-const SkillGroup = ({ title, items = [], wide = false, children }) => {
+const SkillGroup = ({ title, skills = [], children }) => {
   return (
-    <div className={`fo-skill-group ${wide ? "fo-skill-group-wide" : ""}`}>
+    <div className="fo-skill-group">
       <h3 className="fo-skill-title">{title}</h3>
       {children ?? (
-        <ul className="fo-skill-list">
-          {items.map((item) => (
-            <li key={item}>
-              <Badge>{item}</Badge>
+        <ul className="fo-skill-cards">
+          {skills.map((skill) => (
+            <li key={skill.title}>
+              <SkillCard {...skill} />
             </li>
           ))}
         </ul>
