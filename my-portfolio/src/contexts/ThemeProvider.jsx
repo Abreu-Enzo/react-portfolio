@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { ThemeContext } from "./ThemeContext";
 
 const STORAGE_KEY = "theme";
-const REVEAL_DURATION_MS = 500;
 
 // O script inline do index.html já escolheu o tema (salvo ou do sistema) e o aplicou no <html>
 // antes do React carregar. Aqui só lemos esse valor: assim não há flash nem duas regras diferentes.
@@ -42,21 +41,21 @@ const ThemeProvider = ({ children }) => {
       return;
     }
 
+    // A animação do círculo fica no CSS (ThemeToggle.css). Aqui só dizemos de onde ele parte
+    // e até onde cresce: o raio é a distância do botão até o canto mais longe da tela.
+    const { x, y } = origin;
+    const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+    const root = document.documentElement.style;
+    root.setProperty("--reveal-x", `${x}px`);
+    root.setProperty("--reveal-y", `${y}px`);
+    root.setProperty("--reveal-radius", `${radius}px`);
+
     // A View Transition tira uma "foto" da tela, roda o callback e anima da foto antiga para a nova.
     // O callback precisa mudar a página na hora, por isso aplicamos o tema direto no <html>
     // (o setTheme sozinho só atualizaria no próximo render).
-    const transition = document.startViewTransition(() => {
+    document.startViewTransition(() => {
       applyTheme(next);
       setTheme(next);
-    });
-
-    transition.ready.then(() => {
-      const { x, y } = origin;
-      const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
-      document.documentElement.animate(
-        { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
-        { duration: REVEAL_DURATION_MS, easing: "ease-in-out", pseudoElement: "::view-transition-new(root)" },
-      );
     });
   }
 
