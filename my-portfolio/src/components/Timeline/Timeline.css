@@ -1,36 +1,126 @@
+/*
+ * Linha do tempo: uma linha vertical (::before da lista), um ponto por item sobre ela
+ * e um traço pontilhado (::after do item) ligando o ponto ao card.
+ * Celular: linha à esquerda. Desktop (≥ 900px): linha no centro e itens alternando de lado.
+ */
 .fo-timeline {
+  --tl-dot: 16px;
+  --tl-gutter: var(--space-10); /* espaço entre a linha e o card */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid var(--border);
 }
-.fo-timeline li {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 2px var(--space-4);
-  padding: var(--space-4) 0;
-  border-bottom: 1px solid var(--border);
+.fo-timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--tl-dot) / 2 - 1px);
+  width: 2px;
+  background: var(--border);
+}
+
+.fo-tl-item {
+  position: relative;
+  padding-left: var(--tl-gutter);
+}
+/* Traço pontilhado do ponto até o card. */
+.fo-tl-item::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--space-6) + var(--tl-dot) / 2 - 1px);
+  left: var(--tl-dot);
+  width: calc(var(--tl-gutter) - var(--tl-dot));
+  border-top: 2px dotted var(--border-strong);
+}
+
+.fo-tl-dot {
+  position: absolute;
+  z-index: 1;
+  top: var(--space-6);
+  left: 0;
+  width: var(--tl-dot);
+  height: var(--tl-dot);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--border-strong);
+  background: var(--background);
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+}
+/* Cargo atual e item com o mouse em cima: o ponto acende na cor da marca. */
+.fo-tl-current .fo-tl-dot,
+.fo-tl-item:hover .fo-tl-dot {
+  background: var(--brand);
+  border-color: var(--brand);
+}
+.fo-tl-item:hover .fo-tl-dot {
+  transform: scale(1.25);
+}
+
+.fo-tl-card {
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-6);
+}
+.fo-tl-period {
+  color: var(--muted-foreground);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
 }
 .fo-tl-title {
-  grid-column: 1 / -1;
+  font-size: 18px;
+  line-height: 26px;
   font-weight: 500;
 }
-.fo-tl-org,
-.fo-tl-place,
-.fo-tl-period {
+.fo-tl-org {
   color: var(--muted-foreground);
   font-size: 14px;
   line-height: 20px;
 }
-.fo-tl-org,
-.fo-tl-place {
-  grid-column: 1;
-}
-/* O período fica à direita, na linha da instituição. */
-.fo-tl-period {
-  grid-column: 2;
-  grid-row: 2;
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
+
+@media (min-width: 900px) {
+  .fo-timeline::before {
+    left: calc(50% - 1px);
+  }
+  .fo-tl-item {
+    width: 50%;
+    padding-left: 0;
+    padding-right: var(--tl-gutter);
+    text-align: right;
+  }
+  .fo-tl-item:nth-child(even) {
+    margin-left: 50%;
+    padding-left: var(--tl-gutter);
+    padding-right: 0;
+    text-align: left;
+  }
+  .fo-tl-dot {
+    left: auto;
+    right: calc(var(--tl-dot) / -2);
+  }
+  .fo-tl-item:nth-child(even) .fo-tl-dot {
+    left: calc(var(--tl-dot) / -2);
+    right: auto;
+  }
+  .fo-tl-item::after {
+    left: auto;
+    right: calc(var(--tl-dot) / 2);
+    width: calc(var(--tl-gutter) - var(--tl-dot) / 2);
+  }
+  .fo-tl-item:nth-child(even)::after {
+    left: calc(var(--tl-dot) / 2);
+    right: auto;
+  }
+  /* Os itens se encaixam como na referência: cada um sobe até a metade do anterior. */
+  .fo-tl-item + .fo-tl-item {
+    margin-top: calc(var(--space-12) * -1);
+  }
 }
