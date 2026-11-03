@@ -21,7 +21,7 @@ export const PROFILE_PHOTOS = {
 
 export const ABOUT_PARAGRAPHS = [
   "Sou o Enzo Abreu. Trabalho com produtos digitais no PicPay há 3 anos e hoje sou Analista de Produtos na área de Seguros.",
-  "Sou formado em Administração, com enfoque em Finanças e Produtos Digitais, e estou no primeiro semestre de Engenharia de Software na FIAP.",
+  "Sou formado como técnico em Administração, com foco em Finanças e Negócios Digitais, e estou no primeiro semestre de Engenharia de Software na FIAP.",
   "Passei por atendimento, projetos internos, corretora de seguros e planejamento estratégico antes de chegar a Produtos. Essa trajetória me ajuda a enxergar o produto do lado do cliente, do negócio e, agora, do código.",
 ];
 
