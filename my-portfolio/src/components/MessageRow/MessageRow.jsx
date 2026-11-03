@@ -23,17 +23,23 @@ const MessageRow = ({ message, onMarkRead, onMarkAnswered, savingStatus = null }
   const bodyId = `message-${message.id}-body`;
   const saving = savingStatus !== null;
 
-  // O botão "Expandir" só aparece se o texto não cabe na linha. O ResizeObserver mede de novo
-  // quando a largura muda (ex.: girar o celular). Medido só fechado: aberto, tudo já está visível.
+  // O botão "Expandir" só aparece se o texto não cabe na linha. Mede depois de desenhar
+  // (requestAnimationFrame) e de novo quando a janela muda de tamanho (ex.: girar o celular).
+  // Medido só fechado: aberto, o texto inteiro já está visível.
   useEffect(() => {
     const body = bodyRef.current;
     if (expanded || !body) return;
 
-    const observer = new ResizeObserver(() => {
+    function measure() {
       setOverflowing(body.scrollHeight > body.clientHeight);
-    });
-    observer.observe(body);
-    return () => observer.disconnect();
+    }
+
+    const frame = requestAnimationFrame(measure);
+    window.addEventListener("resize", measure);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("resize", measure);
+    };
   }, [expanded, message.body]);
 
   return (
