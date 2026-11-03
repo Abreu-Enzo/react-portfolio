@@ -24,3 +24,11 @@ Adicionar à home, depois do hero e dos Destaques, três seções com o conteúd
 - Idade: não entra no site.
 
 ## Comments
+
+**02/11, implementação (branch `feature/home-sobre-mim`):**
+
+- Ordem mudada a pedido do Dono: as três seções ficam **entre o hero e os Destaques** (hero → Sobre → Trajetória → Skills → Destaques).
+- Conteúdo em `src/data/about.js`; componentes novos `Timeline`, `StackGrid` e `SkillGroup` (pílulas com `Badge`).
+- `StackGrid` com logos do simpleicons.org 16.36.0 em `src/assets/stack/`; SQL e Engenharia de Prompt não têm logo oficial e usam os ícones `code` e `sparkle` do design system.
+- Seções com âncoras `#sobre`, `#trajetoria` e `#skills` (com `scroll-margin-top` para o menu fixo).
+- **Não feito: itens Sobre e Stack na NavPill.** O `NavLink` ignora o `#` ao decidir o item ativo, então Sobre e Stack ficariam marcados como página atual na home inteira. Além disso, o React Router não rola até a âncora ao navegar. Resolver isso pede ler a URL (`useLocation`, fora da `react-fundamentos`) ou trocar `NavLink` por `<a href="/#sobre">`. Fica para decisão do Dono.

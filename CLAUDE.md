@@ -41,6 +41,7 @@ routes/       páginas carregadas sob demanda (React.lazy)
 schemas/      funções de validação
 styles/       estilos globais e tokens em CSS puro
 utils/        funções puras auxiliares
+data/         conteúdo fixo das páginas (textos, listas), separado do JSX
 assets/       imagens processadas pelo Vite
 ```
 
