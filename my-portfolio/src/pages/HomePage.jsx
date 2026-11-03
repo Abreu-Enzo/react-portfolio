@@ -3,6 +3,18 @@ import SectionHeader from "../components/SectionHeader/SectionHeader";
 import Button from "../components/Button/Button";
 import ProjectGrid from "../components/ProjectGrid/ProjectGrid";
 import RateLimitAlert from "../components/RateLimitAlert/RateLimitAlert";
+import Timeline from "../components/Timeline/Timeline";
+import StackGrid from "../components/StackGrid/StackGrid";
+import SkillGroup from "../components/SkillGroup/SkillGroup";
+import ProfilePhotos from "../components/ProfilePhotos/ProfilePhotos";
+import {
+  ABOUT_PARAGRAPHS,
+  CAREER,
+  PRODUCT_SKILLS,
+  PROFILE_PHOTOS,
+  SOFT_SKILLS,
+  TECH_SKILLS,
+} from "../data/about";
 import useGithubRepos from "../hooks/useGithubRepos";
 import useFeatured, { MAX_FEATURED } from "../hooks/useFeatured";
 import { getFeaturedProjects, getRecentProjects } from "../utils/projects";
@@ -44,6 +56,36 @@ const HomePage = () => {
           >
             Meu GitHub
           </Button>
+        </div>
+      </FrameSection>
+
+      <FrameSection id="sobre" aria-labelledby="about-title">
+        <SectionHeader title="Sobre" id="about-title" />
+        <div className="fo-about">
+          <div className="fo-about-copy">
+            {ABOUT_PARAGRAPHS.map((paragraph, index) => (
+              <p key={index} className={index === 0 ? "text-lead fo-about-lead" : "fo-about-text"}>
+                {paragraph}
+              </p>
+            ))}
+          </div>
+          <ProfilePhotos main={PROFILE_PHOTOS.main} detail={PROFILE_PHOTOS.detail} />
+        </div>
+      </FrameSection>
+
+      <FrameSection id="trajetoria" aria-labelledby="career-title">
+        <SectionHeader title="Trajetória" id="career-title" meta="Do mais recente para o mais antigo." />
+        <Timeline items={CAREER} />
+      </FrameSection>
+
+      <FrameSection id="skills" aria-labelledby="skills-title">
+        <SectionHeader title="Skills" id="skills-title" />
+        <div className="fo-skills">
+          <SkillGroup title="Soft skills" skills={SOFT_SKILLS} />
+          <SkillGroup title="Hard skills · Produto" skills={PRODUCT_SKILLS} />
+          <SkillGroup title="Hard skills · Tecnologia">
+            <StackGrid items={TECH_SKILLS} label="Tecnologias" />
+          </SkillGroup>
         </div>
       </FrameSection>
 

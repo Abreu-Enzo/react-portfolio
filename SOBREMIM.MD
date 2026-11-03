@@ -2,7 +2,7 @@
 
 ## Informações pessoais:
 - Nome: Enzo Abreu
-- Formação: Administração com enfoque em Finanças e Produtos Digitais
+- Formação: Técnico em Administração, com foco em Finanças e Negócios Digitais
 - Graduação: Engenharia de Software (Cursando / 1 semestre)
 
 ## Experiência

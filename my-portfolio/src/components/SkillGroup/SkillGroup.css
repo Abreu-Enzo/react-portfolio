@@ -1,0 +1,25 @@
+.fo-skill-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+/* Mesmo estilo do eyebrow do hero: rótulo em mono, discreto. */
+.fo-skill-title {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+/* Mesma grade dos cards de projeto: uma coluna no celular, quantas couberem no desktop. */
+.fo-skill-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

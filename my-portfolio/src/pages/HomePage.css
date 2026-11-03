@@ -26,6 +26,49 @@
   flex-wrap: wrap;
   gap: var(--space-3);
 }
+
+/* Sobre: texto e fotos empilhados no celular; lado a lado a partir de 768px. */
+.fo-about {
+  display: grid;
+  gap: var(--space-10);
+  align-items: center;
+}
+.fo-about-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 64ch;
+}
+.fo-about-lead,
+.fo-about-text {
+  margin: 0;
+}
+.fo-about-text {
+  color: var(--muted-foreground);
+}
+@media (min-width: 768px) {
+  .fo-about {
+    grid-template-columns: 1.3fr 1fr;
+  }
+  .fo-about .fo-photos {
+    justify-self: end;
+  }
+}
+
+/* Skills: cada grupo ocupa a linha inteira (cards de soft e de produto, depois as tecnologias). */
+.fo-skills {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+/* Âncoras (#sobre, #trajetoria, #skills) param abaixo do menu fixo. */
+#sobre,
+#trajetoria,
+#skills {
+  scroll-margin-top: calc(var(--header-height) + var(--space-6));
+}
+
 @media (min-width: 1024px) {
   .fo-hero-title {
     font-size: 64px;

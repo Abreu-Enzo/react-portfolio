@@ -1,0 +1,66 @@
+.fo-stack {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.fo-stack-item {
+  position: relative;
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  padding: var(--space-4) var(--space-2);
+  border-radius: var(--radius-lg);
+  color: var(--muted-foreground);
+  text-align: center;
+  transition: background-color var(--duration-base) var(--ease-out);
+}
+.fo-stack-item:hover {
+  background: var(--muted);
+}
+.fo-stack-logo {
+  width: 32px;
+  height: 32px;
+  background-color: var(--muted-foreground);
+  -webkit-mask: var(--logo) center / contain no-repeat;
+  mask: var(--logo) center / contain no-repeat;
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+}
+.fo-stack-icon {
+  transition:
+    color var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+}
+.fo-stack-item:hover .fo-stack-logo {
+  background-color: var(--logo-color, var(--foreground));
+  transform: translateY(-2px) scale(1.06);
+}
+.fo-stack-item:hover .fo-stack-icon {
+  color: var(--foreground);
+  transform: translateY(-2px) scale(1.06);
+}
+.fo-stack-name {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0;
+  opacity: 0;
+  transform: translateY(-2px);
+  transition:
+    opacity var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+.fo-stack-item:hover .fo-stack-name {
+  opacity: 1;
+  transform: none;
+}
+/* Em telas de toque não há hover: o nome fica sempre visível. */
+@media (hover: none) {
+  .fo-stack-name {
+    opacity: 1;
+    transform: none;
+  }
+}

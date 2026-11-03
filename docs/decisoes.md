@@ -104,6 +104,12 @@ Registro das escolhas relevantes do projeto: opções comparadas, critério e o 
 - Escolha: Conventional Commits em português, validado pelo commitlint no hook `commit-msg`; Husky + lint-staged no `pre-commit` (ESLint e Prettier só nos arquivos do commit, para ser rápido); GitHub Flow (`main` sempre publicável, uma branch por funcionalidade, merge por PR). Como o `package.json` fica em `my-portfolio/` e o `.git` na raiz, o script `prepare` roda `cd .. && husky my-portfolio/.husky` e cada hook entra em `my-portfolio/` antes de rodar.
 - O que aceitamos perder (trade-off): hooks locais podem ser pulados com `--no-verify`; por isso o CI repete formatação, lint, testes e build no PR.
 
+## Seções Sobre, Trajetória e Skills da home
+- Opções comparadas: lista simples ou linha do tempo; skills em pílulas (`Badge`) ou em cards ilustrados; cores soltas nos cards ou tokens novos
+- Critério: pedido do Dono (linha do tempo como na referência, cards com cor, ilustração e descrição) sem quebrar as regras do design system (só `var(--…)`, contraste nos dois temas)
+- Escolha: `Timeline` virou linha do tempo (vertical à esquerda no celular, alternada a partir de 900px), com hover por item. Skills de soft e produto em `SkillCard` sobre tokens novos `--tint-sky|lime|sand|rose|violet` (em `tokens.css` e `tokens.json`); tecnologia continua no `StackGrid`. Ilustrações de traço do Figma Community usadas como máscara CSS, para pegar a cor do tema. Fotos do Dono em WebP (`sharp`) com `width`/`height` e `loading="lazy"`.
+- O que aceitamos perder (trade-off): o design system deixa de ser só monocromático (cinco fundos suaves, restritos aos cards de skill). O limite de chamadas do plano gratuito do Figma permitiu baixar só 3 das 7 ilustrações: as outras 4 usam um ícone do design system até serem exportadas.
+
 ## Recursos usados além da react-fundamentos
 - Opções comparadas: ficar só com o que as apostilas mostram; usar o recurso equivalente do React, do React Router ou do navegador quando o da apostila não resolve
 - Critério: a regra do projeto pede a opção da disciplina primeiro; fora dela, só quando ela não atende e com o motivo registrado
