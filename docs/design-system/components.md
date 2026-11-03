@@ -144,11 +144,32 @@ Rótulo curto de status em pílula de 24px.
 
 ### Timeline
 
-Lista de trajetória (formação e experiência) da página Sobre, no formato "Journey" da referência: título, instituição, local e período alinhado à direita.
+Linha do tempo da trajetória (formação e experiência): uma linha vertical com um ponto por item, ligado por traço pontilhado a um `Card interactive` com período (mono), título e instituição.
 
-**Props:** `items` `[{title, org, place, period}]`.
+**Props:** `items` `[{title, org, place?, period, current?}]`.
 
 - Ordem do mais recente para o mais antigo. Período com números tabulares.
+- Celular: linha à esquerda. A partir de 900px: linha no centro e itens alternando de lado, encaixados (cada um sobe `space-12` sobre o anterior).
+- Hover por item: o card sobe com `shadow-lift` e o ponto acende em `brand`. `current` deixa o ponto do cargo atual sempre aceso (o único `brand` da seção).
+
+### SkillCard
+
+Card ilustrado de uma skill: ilustração de traço, nome e descrição curta sobre um fundo `tint-*`.
+
+**Props:** `title`, `description`, `illustration?` (SVG de traço em `src/assets/illustrations/`), `icon?` (alternativa do `Icon` enquanto não há ilustração), `tone` sky | lime | sand | rose | violet.
+
+- Base é o `Card interactive` (mesmo hover dos cards de projeto). A ilustração vira máscara CSS e pinta com `foreground`, então funciona nos dois temas.
+- Texto sempre em `foreground` (descrição com opacidade 0.8): `muted-foreground` não tem contraste suficiente sobre os `tint-*` no tema claro.
+- Ilustrações: arquivo "1,600 Free Illustrations" (Figma Community), exportadas em SVG sem o retângulo de fundo da apresentação e otimizadas com svgo (com `viewBox`).
+- Agrupe com `SkillGroup` (título em mono + grade `minmax(min(100%, 240px), 1fr)`).
+
+### ProfilePhotos
+
+Foto principal do Dono com um retrato menor sobreposto no canto inferior (gira 4°; endireita no hover).
+
+**Props:** `main` e `detail`, cada um `{src, width, height, alt}`.
+
+- Fotos em WebP já no tamanho exibido, com `width`/`height` reais e `loading="lazy"`.
 
 ### StackGrid
 
