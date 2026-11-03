@@ -91,9 +91,15 @@ npm run build
 - Ferramentas: Prettier + Husky + lint-staged + commitlint; testes com Vitest + Testing Library.
 - Prioridade: rotas + GitHub > contato > dashboard > tema > testes/deploy > cena 3D (a primeira a cair).
 
+## Revisão antes do PR
+
+Use o agente `revisor` (`.claude/agents/revisor.md`) para conferir a branch contra as skills antes de abrir ou fazer merge de um PR. Como o harness funciona está em `docs/harness-ia.md`.
+
 ## Pendências
 
-- Design system: criado (ver seção "Design system"). Falta importar `styles/tokens.css` no `index.css` e implementar os componentes.
+- Ilustrações de 4 cards de skill (tempo, processos, ágeis, dados): aguardando o Dono exportar os SVGs do Figma; enquanto isso usam ícones do design system (ver `src/data/about.js`).
+- Itens Sobre e Stack na NavPill: aguardando decisão do Dono (ver `.scratch/home-sobre-mim/`).
+- Gravar o vídeo (roteiro em `docs/roteiro-video.md`).
 
 ## Agent skills
 
