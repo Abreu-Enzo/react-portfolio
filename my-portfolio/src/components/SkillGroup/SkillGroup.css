@@ -1,0 +1,29 @@
+.fo-skill-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+}
+@media (min-width: 768px) {
+  .fo-skill-group-wide {
+    grid-column: 1 / -1;
+  }
+}
+/* Mesmo estilo do eyebrow do hero: rótulo em mono, discreto. */
+.fo-skill-title {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.fo-skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
