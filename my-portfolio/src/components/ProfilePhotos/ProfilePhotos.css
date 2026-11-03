@@ -1,0 +1,36 @@
+.fo-photos {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  /* Espaço para o retrato que sai pela borda de baixo. */
+  padding-bottom: var(--space-10);
+}
+.fo-photo-main {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--border);
+  background: var(--muted);
+}
+.fo-photo-detail {
+  position: absolute;
+  right: calc(var(--space-4) * -1);
+  bottom: 0;
+  width: 34%;
+  height: auto;
+  border-radius: var(--radius-xl);
+  border: 4px solid var(--background);
+  background: var(--muted);
+  box-shadow: var(--shadow-lift);
+  transform: rotate(4deg);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+.fo-photos:hover .fo-photo-detail {
+  transform: rotate(0deg) scale(1.04);
+}
+@media (max-width: 479px) {
+  .fo-photo-detail {
+    right: 0;
+  }
+}
