@@ -27,8 +27,13 @@
   gap: var(--space-3);
 }
 
-/* Sobre */
+/* Sobre: texto e fotos empilhados no celular; lado a lado a partir de 768px. */
 .fo-about {
+  display: grid;
+  gap: var(--space-10);
+  align-items: center;
+}
+.fo-about-copy {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
@@ -41,16 +46,20 @@
 .fo-about-text {
   color: var(--muted-foreground);
 }
-
-/* Skills: dois grupos lado a lado no desktop; a grade de tecnologias ocupa a linha inteira. */
-.fo-skills {
-  display: grid;
-  gap: var(--space-8);
-}
 @media (min-width: 768px) {
-  .fo-skills {
-    grid-template-columns: 1fr 1fr;
+  .fo-about {
+    grid-template-columns: 1.3fr 1fr;
   }
+  .fo-about .fo-photos {
+    justify-self: end;
+  }
+}
+
+/* Skills: cada grupo ocupa a linha inteira (cards de soft e de produto, depois as tecnologias). */
+.fo-skills {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
 }
 
 /* Âncoras (#sobre, #trajetoria, #skills) param abaixo do menu fixo. */
